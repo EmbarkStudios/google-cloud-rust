@@ -10,3 +10,10 @@ members = [
     "storage",
     "spanner-derive"
 ]
+
+[patch.crates-io]
+prost = { git = "https://github.com/EmbarkStudios/prost", rev = "5281972" }
+prost-build = { git = "https://github.com/EmbarkStudios/prost", rev = "5281972" }
+prost-types = { git = "https://github.com/EmbarkStudios/prost", rev = "5281972" }
+prost-derive = { git = "https://github.com/EmbarkStudios/prost", rev = "5281972" }
+
