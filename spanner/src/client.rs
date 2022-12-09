@@ -19,6 +19,7 @@ use google_cloud_gax::project::ProjectOptions;
 use std::future::Future;
 use std::pin::Pin;
 use std::sync::Arc;
+use google_cloud_googleapis::spanner::v1::transaction_options::ReadWrite;
 
 #[derive(Clone, Default)]
 pub struct PartitionedUpdateOption {
@@ -398,7 +399,7 @@ impl Client {
             Some(ro),
             |session| async {
                 let tx = commit_request::Transaction::SingleUseTransaction(TransactionOptions {
-                    mode: Some(transaction_options::Mode::ReadWrite(transaction_options::ReadWrite {})),
+                    mode: Some(transaction_options::Mode::ReadWrite(ReadWrite {read_lock_mode: transaction_options::read_write::ReadLockMode::Unspecified as i32})),
                 });
                 match commit(session, ms.clone(), tx, options.clone()).await {
                     Ok(s) => Ok(s.commit_timestamp.map(|s| s.into())),

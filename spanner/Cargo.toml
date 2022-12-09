@@ -12,8 +12,8 @@ documentation = "https://docs.rs/google-cloud-spanner/latest/google_cloud_spanne
 
 [dependencies]
 tracing = "0.1"
-prost-types = "0.10"
-tokio = "1.20"
+prost-types = "0.11.2"
+tokio = "1.23.0"
 chrono = "0.4"
 thiserror = "1.0"
 async-trait = "0.1"
@@ -28,7 +28,7 @@ google-cloud-gax = { version = "0.10.0", path = "../foundation/gax", default-fea
 google-cloud-googleapis = { version = "0.6.0", path = "../googleapis", features = ["spanner"]}
 
 [dev-dependencies]
-tokio = { version="1.20", features=["rt-multi-thread"] }
+tokio = { version="1.23.0", features=["rt-multi-thread"] }
 tracing-subscriber = "0.3"
 serial_test = "0.9"
 anyhow = "1.0.48"

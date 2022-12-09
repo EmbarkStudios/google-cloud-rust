@@ -17,6 +17,7 @@ use google_cloud_googleapis::spanner::v1::{
     BeginTransactionRequest, CommitRequest, CommitResponse, ExecuteBatchDmlRequest, ExecuteSqlRequest, Mutation,
     ResultSetStats, RollbackRequest, TransactionOptions, TransactionSelector,
 };
+use google_cloud_googleapis::spanner::v1::transaction_options::read_write::ReadLockMode;
 
 #[derive(Clone, Default)]
 pub struct CommitOptions {
@@ -105,7 +106,9 @@ impl ReadWriteTransaction {
     pub async fn begin(session: ManagedSession, options: CallOptions) -> Result<ReadWriteTransaction, BeginError> {
         ReadWriteTransaction::begin_internal(
             session,
-            transaction_options::Mode::ReadWrite(transaction_options::ReadWrite {}),
+            transaction_options::Mode::ReadWrite(transaction_options::ReadWrite {
+                read_lock_mode: ReadLockMode::Unspecified as i32,
+            }),
             options,
         )
         .await
